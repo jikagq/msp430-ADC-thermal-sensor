@@ -26,7 +26,15 @@ int tempconverion(int tensionadc){//converti la valeur lu de l'adc en temperatur
 }
 
 void initpwms(void){//initialise les pwm des ventilateurs
+    P2SEL |=(BIT2|BIT4);
+    P2SEL2 &=~(BIT2|BIT4);
+    TA1CTL=TASSEL_2 | MC_1;
+    TA1CCTL1|= OUTMOD_7;
+    TA1CCTL2|= OUTMOD_7;
+    TA1CCR0=210;
 
+    TA1CCR1 =100;
+    TA1CCR2 =100;
 
 }
 
