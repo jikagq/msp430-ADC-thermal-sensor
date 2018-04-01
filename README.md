@@ -11,9 +11,11 @@ TO-DO-LIST:
 - generate PWM to drive fans
 - design electrical board
 - create circuit with lm3915 to monitor battery charge
+- monitor fan speed thanks to tach pins
 
 
 
 Completed tasks:
 - Test power on one led with fan
+- drill heatsinks
 

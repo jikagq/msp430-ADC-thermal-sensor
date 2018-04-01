@@ -36,6 +36,40 @@ void initpwms(void){//initialise les pwm des ventilateurs
     TA1CCR1 =100;
     TA1CCR2 =100;
 
+
+    //tach
+
+    P2DIR  &= ~(BIT0|BIT3);//p2.0 et p2.3 en entrée
+
+    P2IE |= BIT3;//config interruptions p2.3
+    P2IES |= BIT3;
+    P2IFG &= ~(BIT3);
+
+    P2IE |= BIT0;//config interruptions p2.0
+    P2IES |= BIT0;
+    P2IFG &= ~(BIT0);
+
+}
+
+int speedfan(int fannumber){
+    int speed=0;
+
+    if(fannumber == 1){
+
+    }else{
+
+    }
+
+    return speed;
+
+}
+
+void speedmeasure(void){
+    __enable_interrupt();
+
+    __delay_cycles(100);
+
+    __disable_interrupt();
 }
 
 void regulation(int temp1, int temp2){//regle les pwm en fonction des temperatures
@@ -76,4 +110,18 @@ int main(void)
 	}
 	
 	return 0;
+}
+
+#pragma vector = PORT2_VECTOR
+__interrupt void PORT2_ISR( void){
+
+    if((P2IN & BIT3)==0){
+        //
+        P2IFG &= ~(BIT3);
+    }
+    if((P2IN & BIT0)==0){
+        //
+       P2IFG &= ~(BIT0);
+    }
+
 }
